@@ -1,0 +1,31 @@
+{
+  "name": "todo-app-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js --w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShubhamVora-1206/Todo-App-Express.git"
+  },
+  "author": "shubhamVora",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShubhamVora-1206/Todo-App-Express/issues"
+  },
+  "homepage": "https://github.com/ShubhamVora-1206/Todo-App-Express#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.8",
+    "express": "*",
+    "express-session": "^1.17.3",
+    "mongoose": "^6.6.5",
+    "multer": "*",
+    "nodemon": "^2.0.20",
+    "socket.io": "^4.5.3",
+    "xhr2": "^0.2.1"
+  }
+}

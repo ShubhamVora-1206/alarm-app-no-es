@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Todos App</title>
+        <link rel="stylesheet"    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/mystyle.css"/>
+    </head>
+    <body>
+        <nav>
+            <div class="topnav">
+                <h3>Welcome <%= user.username%></h3>
+                <script>
+                    var userData = '<%- JSON.stringify(user) %>';
+                </script>
+                <a  href="/logout"><h3>Logout</h3></a>
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="column" id="tasks">
+                <h1>Alarms</h1>
+                <table id="table1" align="center">
+                    <!-- <div id="parent"> -->
+                        <% data.forEach(function(alarm){ %>
+                            <tr id="alRow">
+                            
+                                    <td><%= alarm.text %></td>
+                                    <td><%= alarm.date %></td>
+                                    <td><%= alarm.time %></td>
+                            
+                                <td> 
+                                    <form action="/delete" method="post">
+                                        <button name="delete" type="submit" value=<%= JSON.stringify(alarm._id) %>><i class="fa fa-trash"></i></button>
+                                    </form>
+                                    </td>
+            
+                            </tr>
+                        <%}) %>
+                        
+                <!-- </div> -->
+                </table>
+                
+            </div>
+            <div class="column" id="inputs">
+                <form action="/alarm" method="post">
+                    <input id="ip" name="ip" type="text" placeholder="I need to..." >
+                    <%var currentdate = new Date()  %>
+                    <% var datetime = currentdate.getHours() + ":" %>
+                    <% if(currentdate.getMinutes()<10){ %>
+                    <% datetime=datetime+"0"+ currentdate.getMinutes() %>
+                    <%    }else{ %>
+                    <%     datetime=datetime + currentdate.getMinutes() %>
+                    <%   }%>
+                    
+                    <label for="time">Time</label>
+                    <input id="time" type="time" min="<%= datetime %>" name="time"/>
+                    <% var today =  currentdate.getFullYear()+"-"+ (currentdate.getMonth()+1) %>
+                    <% if (currentdate.getDate()<10){ %>
+                    <%    today = today+ "-0"+currentdate.getDate(); %>
+                    <%}else{ %> 
+                    <%    today = today+ "-"+currentdate.getDate(); %>
+                    <% } %>
+                    <label for="date">Date</label>
+                    <input id="date" type="date" min="<%= today %>"" name="date"/>
+                    
+                    <input id="submit" type="submit"/>
+                </form>
+            </div>
+        </div>
+        <script src="socket.io/socket.io.js"></script>
+        <script src="/js/myscript.js"></script>
+    </body>
+</html>
+
+
+
+
+
+<!-- Built By Shubham Vora -->
+
+
