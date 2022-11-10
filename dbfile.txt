@@ -1,1 +1,0 @@
-[{"_id":"63517fe3f313b11f771d5163","text":"hi","createdBy":"abc","strike":false,"taskImage":"uploads\\74c2f3e684ae07fcdf741ddc44fba510","__v":0},{"_id":"63517ff3f313b11f771d5168","text":"heklo","createdBy":"abc","strike":true,"taskImage":"uploads\\9035835214fecd9306b041da3d37c087","__v":0}]

@@ -16,7 +16,7 @@ startDb();
 const port = process.env.PORT||5000;
 // const port = 3000;  //TODO Change before Deployement
 let userId = 0;
-function sessionFun(req,res,next){
+function newSession(req,res,next){
     console.log('yePakka',req.cookies);
     if(sessionData[req.cookies.CID]===undefined){
         res.cookie("CID",userId,{maxAge:1800000});
@@ -45,7 +45,7 @@ app.set("views","./views");
 
 // const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
 
-// io.use(wrap(sessionFun));
+// io.use(wrap(newSession));
 
 // only allow authenticated users
 // io.use((socket, next) => {
@@ -101,7 +101,7 @@ app.route("/alarm").get(GetTodo).post(PostTodo);
 app.route("/delete").get(DeleteTodo).post(deleteProd);
 
 
-app.route("/login").get(sessionFun,function(req,res){
+app.route("/login").get(newSession,function(req,res){
 	res.sendFile(__dirname+"/public/html/login.html")
 }).post(function(req,res){
 	// console.log(req.body);
@@ -113,11 +113,7 @@ app.route("/login").get(sessionFun,function(req,res){
 			// console.log("user looks like ",user);
 			sessionData[req.cookies.CID].username = user[0].username;
 			sessionData[req.cookies.CID].user = user[0];
-			// req.session.isLoggedIn = true;
-			// req.session.authenticated = true;
-			// console.log("user looks like ",user);
-			// req.session.username = user[0].username;
-			// req.session.user = user[0];
+		
 			res.redirect('/');
 		}
 		else{
@@ -175,24 +171,6 @@ function Home(req,res){
         console.log("isloggedin no yet set");
         res.redirect("/login");
     }
-    // console.log(sessionData);
-    // console.log(req.cookies);
-
-	// if(req.session.isLoggedIn){
-	// 	// res.sendFile(__dirname+"/public/html/index.html");
-	// 	getTodos(function(err,alarms){
-	// 		const userTodo = alarms.filter(function(alarm){
-	// 			return alarm.createdBy === req.session.username;
-	// 		});
-			
-	// 		req.session.data = userTodo;
-			
-	// 		res.render("home",{data:userTodo,user:req.session.user}); //home.ejs
-	// 	})
-	// }
-	// else{
-	// 	res.redirect("/login");
-	// }
 }
 
 
@@ -217,9 +195,6 @@ function PostTodo(req,res){
 	res.cookie("CID",req.cookies.CID,{maxAge:1800000});
 	saveTodos(alarm,function(){
 		// console.log("in saveTodos");
-		// console.log(req.body);
-		// console.log("saving this",alarm)   //10
-		// alarmChecker(req,res);
 		res.redirect("/");
 	})
 }

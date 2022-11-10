@@ -1,5 +1,4 @@
 const alarmModel = require("../database/models/alarm");    
-// const mail = require("../../utils/mail/sendMail");
 
 module.exports = async function(req,res){
     try{
