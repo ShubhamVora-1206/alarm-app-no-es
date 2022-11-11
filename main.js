@@ -28,6 +28,7 @@ function newSession(req,res,next){
 
 }
 app.use(express.static("public"));
+app.use('/uploads', express.static(__dirname + '/public'));
 app.use(express.json()); //middleware used to parse json data
 app.use(express.urlencoded({extended:true})); //middleware used to parse form data
 // const sessionMiddleware= session({
@@ -85,7 +86,7 @@ io.on("connection", socket=>{
 			}
 			else{
 				console.log("joining room",userSocket[userId]);
-				socket.join(userSocket[userId])
+				socket.join(userSocket[userId]) //todo minimize room logic
 				// console.log('mayBeIdhar',userSocket);
 			}
 		}catch(err){
@@ -142,7 +143,7 @@ app.route("/signup").get(function(req,res){
 });
 
 app.route("/logout").get(function(req,res){
-	req.session.destroy();
+	// req.cookies.destroy();
 	res.redirect("/login");
 })
 
@@ -174,7 +175,7 @@ function Home(req,res){
 }
 
 
-function GetTodo(req,res){
+function GetTodo(req,res){ //todo Change Naming convention
 	// console.log("In GetTodo");      //1
 	getTodos(function(err,data){
 		// console.log("in getTodos");    //4
@@ -233,7 +234,7 @@ function saveTodos(alarm,callback){
 
 }
 
-function delTodos(alarm,callback){
+function delTodos(alarm,callback){ //todo don't actually delete, just make it inactive
 	alarmModel.deleteOne({text:alarm.delete})
 	.then(function(){
 		callback(null);
@@ -285,6 +286,7 @@ setInterval(async()=>{
 			today = today+ "-"+currentdate.getDate();
 		}
 	try{
+		//todo check if the request has returned or not, if it has not returned don't send another req
 		//Compound Index date_1_time_1
 		let dueAlarms = await alarmModel.find({date:today,time:datetime});
 		if (dueAlarms.length){

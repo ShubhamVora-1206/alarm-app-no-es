@@ -6,10 +6,33 @@
     flex-direction: column-reverse;
 }
 html{
-    min-height: 100%;
+    background: url(../uploads/nightSky2.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+ 
 }
+.bg-image {
+    /* The image used */
+    background-image: url(../uploads/nightBg2.jpeg);
+  
+    /* Add the blur effect */
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    position: relative;
+    /* Full height */
+    height: 100vh;
+    z-index: -5;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 body{
-    background-image: linear-gradient(to top,rgb(176, 217, 251),rgb(1, 75, 109));
+    /* height: 100vh; */
+       /* position: absolute;
+    z-index: 5; */
 }
 .column {
     flex: 50%;
@@ -117,7 +140,15 @@ nav{
     text-decoration: none;
     font-size: 17px;
   }
-  
+  .topnav img{
+    margin-left: 35%;
+    /* margin-right: 50%; */
+    margin-top: 0px;
+    height: 60px;
+    width: 60px;
+    margin-bottom: 0px;
+    position:absolute;
+  }
   /* Change the color of links on hover */
   .topnav a:hover {
     background-color: rgb(62, 89, 141);
@@ -149,5 +180,66 @@ label{
 }
 #submit:hover{
     background-color: rgb(33, 104, 176);
+}
+.parent{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.alarm-div{
+    display: flex;
+    color: rgb(248, 242, 242);
+    background-color: #f2f2f264;
+    width: 160px;
+    margin: 20px;
+    word-wrap:break-word;
+    min-height: 200px;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    transition: .2s;
+}
+.alarm-div:hover{
+    transform:scale(1.1);
+    background-color: #f2f2f2a7;
+    transition: .2s;
+    box-shadow: 0 5px 15px #fdec6e;
+    color: #fdec6e;
+    text-shadow:0px 0px 30px #fdec6e;
+    -moz-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+}
+.alarm-div h2{
+    width: 90%;
+    text-align: center;
+    border-radius: 10px;
+    /* background-color: rgba(55, 55, 173, 0.288); */
+    /* color:#fff; */
+  /* -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in; */
+}
+/* .alarm-div h2:hover{
+    color: #fdec6e;
+    text-shadow:0px 0px 30px #fdec6e;
+    -moz-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in; */
+/* } */
+.alarm-div button{
+    width: 80px;
+    border-radius: 10px;
+    text-align: center;
+    color: #f2f2f2;
+    border-style: none;
+    background-color: rgba(255, 0, 0, 0.336);
+}
+.alarm-div button:hover{
+    background-color: rgba(249, 34, 34, 0.792);
 }
 /* Built By Shubham Vora */

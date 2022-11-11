@@ -12,6 +12,6 @@ const alarmSchema = new Schema({
     default: false
   }
 });
-
+//todo change time and date type
 const alarmModel = new mongoose.model("alarm",alarmSchema);
 module.exports = alarmModel;
